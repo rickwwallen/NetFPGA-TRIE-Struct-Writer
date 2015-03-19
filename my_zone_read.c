@@ -36,10 +36,11 @@ int main(int argc, char *argv[])
 
 	addr = BASE_MASK;
 	printf("Address of DRAM: %X \n\n", addr);
+	printf("Zone File Location: %s \n", argv[1]);
 
-	if(argc != 1)
+	if(argc < 1)
 	{	
-		printf("usage: %s please, indicate the zone file to load", argv[0]);
+		printf("usage: %s please, indicate the zone file to load\n", argv[1]);
 		return -1;
 	}
 	
