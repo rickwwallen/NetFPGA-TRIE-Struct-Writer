@@ -1,5 +1,5 @@
 /*
- * * FILE NAME:		dns_netfpga.h
+ * * FILE NAME:		dns_zone_read.h
  * * STANDARD HEADER FILE
  * * CREATED BY:	RICK W. WALLEN
  * * DATE CREATED:	SEPTEMBER.29.2014
@@ -32,7 +32,6 @@
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <arpa/inet.h>
-//#include "my_inet.h"
 #include <netinet/in.h>
 #include <unistd.h>
 //Timestamps
@@ -44,18 +43,8 @@
 #define _DNS_NETFPGA 1
 
 //Network and Structures
-#include "structs_netfpga.h" 
-#include "shared_functions_netfpga.c" 
-#include "triez_netfpga.c" 
-//my_zone_read.h  shared_functions_netfpga.h  structs_netfpga.h  triez_netfpga.h
-//#include <netinet/udp.h>
-//#include "structs_netfpga.h"
-//#include "shared_functions_netfpga.h"
-//#include "triez_netfpga.h"
-
-//Added from ricks_netfpga.c
-//#include "triez_netfpga.c"
-//#include "shared_functions_netfpga.c"
+#include "structs_zone_read.h" 
+#include "triez_zone_read.c" 
 
 /* NETFPGA SPECIFIC DECLARATIONS */
 #define ETH_HDR_SZ 14
@@ -63,7 +52,7 @@
 #define UDP_HDR_SZ 8
 #define DNS_HDR_SZ 12
 //#define TYP_
-#endif //end dns_netfpga.h
+#endif //end dns_zone_read.h
 
 /* DECLARATIONS */
 #define QRY_NO 1
@@ -82,3 +71,11 @@
 #define MAXFD 64
 #define THD_MX 8
 //#define UDP_SZ 4096	//bit size of UDP Packet 500 bytes * 8
+/* WRITE DRAM (ZONE READ SPECIFIC) */
+/* WRITE DRAM (ZONE READ SPECIFIC) */
+#include <net/if.h>
+#include "common/nf2.h"
+#include "common/nf2util.h"
+
+#define DEFAULT_IFACE	"nf2c0"
+#define BASE_MASK 0x4000000

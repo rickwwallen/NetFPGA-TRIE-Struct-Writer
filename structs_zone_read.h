@@ -1,5 +1,5 @@
 /*
- * * FILE NAME:		structs_netfpga.h
+ * * FILE NAME:		structs_zone_read.h
  * * STRUCTURES FOR THE DNS SERVER
  * * CREATED BY:	RICK W. WALLEN
  * * DATE CREATED:	SEPTEMBER.29.2014
@@ -28,7 +28,7 @@
 #define _STRUCTS_NETFPGA_ 1
 
 //#include <arpa/inet.h>
-#include "dns_netfpga.h"
+#include "dns_zone_read.h"
 
 /* Structures */
 	/*Server Structs*/
@@ -44,10 +44,20 @@ typedef struct cliInfo
 	FILE			*fptr;
 }CliInfo;
 */
+
+	/*ZONE READ STRUCTS*/
+struct  two_sixteens
+{
+        uint16_t rdlen;
+        uint16_t rclass;
+};
+
+static struct nf2device nf2;
+
 	/*Trie Structs*/
 typedef struct trieptr
 {
-	char key;
+	char key[4];
 	struct rr *val;
 	struct trieptr *par;
 	struct trieptr *snt;
@@ -102,7 +112,9 @@ typedef struct arec
 	uint16_t	rclass;
 	int32_t		ttl;
 	//struct in_addr	address;
-	unsigned char address[4];
+	//unsigned char address[4];
+	//uint8_t address[4];
+	uint32_t address;
 
 	struct arec	*anxt;
 } A;
@@ -129,13 +141,13 @@ typedef struct soarec
 {
 	uint16_t	rdlen;
 	uint16_t	rclass;
-	char 		*mname;
-	char		*rname;
 	uint32_t	serial;
 	int32_t		refresh;
 	int32_t		retry;
 	int32_t		expire;
 	uint32_t	minimum;
+	char 		*mname;
+	char		*rname;
 } SOA;
 
 typedef struct ptrrec
@@ -162,8 +174,9 @@ typedef struct aaaarec
 	uint16_t	rdlen;
 	uint16_t	rclass;
 	int32_t		ttl;
-	//struct in6_addr	address;
-	unsigned char address[16];
+	struct in6_addr	address;
+	//unsigned char address[16];
+	//uint8_t address[16];
 
 	struct aaaarec	*aaaanxt;
 } AAAA;
@@ -202,4 +215,4 @@ typedef enum
 	allClasses = 255
 }DnsClass;
 
-#endif //end if structs_netfpga.h
+#endif //end if structs_zone_read.h

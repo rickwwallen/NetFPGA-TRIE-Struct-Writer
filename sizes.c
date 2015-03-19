@@ -1,4 +1,4 @@
-#include "dns_netfpga.h"
+#include "dns_zone_read.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
