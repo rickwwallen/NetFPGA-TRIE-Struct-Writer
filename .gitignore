@@ -1,0 +1,22 @@
+# Ignore directories
+#arch
+
+# Ignore archives
+*.tgz
+
+# Ignore swap files
+*.swp
+
+# Ignore object files
+*.o
+
+# Ignore netthreads generated files
+#*.mif
+#*.map
+#*.static
+#rick_hello
+
+# Ignore compiled 
+my_zone_read
+
+# Ignore reference files
